@@ -5,3 +5,6 @@ class Forest():
     def debug(self):
         for i in self.members:
             print(i)
+
+    def add(self, person):
+        self.members[person.name] = person
