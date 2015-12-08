@@ -13,7 +13,7 @@ class Person:
         self.children.append(child)
 
     def setSpouse(self, spouse):
-        self.spouses.append(spouse)
+        self.spouse.append(spouse)
 
 
 
