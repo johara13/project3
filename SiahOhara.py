@@ -8,13 +8,13 @@ if __name__ == '__main__':
   for line in sys.stdin:
     newline = line.split()
     
-    if newline[0]   == 'E' and len(newline) >= 4:
+    if newline[0] == 'E' and len(newline) >= 4:
         p.e(newline[1], newline[2], newline[3])
     elif newline[0]   == 'E' and len(newline) < 4:
         p.e(newline[1], newline[2])
     elif newline[0] == 'R':
-        print('R')
+        p.r(newline[1], newline[2])
     elif newline[0] == 'X':
         print('X')
     elif newline[0] == 'W':
-        print('W')
+        p.w(newline[1], newline[2])

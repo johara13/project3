@@ -3,7 +3,7 @@ import Forest
 import Person
 
 def listoverlap(a, b):   # function to find if two lists share any elements
-    s = set(b)
+    s = set([b])
     return any(n in s for n in a)
 
 class Parser(object):
@@ -50,22 +50,24 @@ class Parser(object):
                 c1 = p1.children
                 c2 = p2.children
                 return list(set(c1) & set(c2))
-                # from what I found this is the best way to find the intersection
-                # of two lists, but there is probably other ways
+                
         elif rel == 'ancestor':
             ancestors = self.forest.members[name1].parents
             for p in ancestors:    # this should work to find the list of ancestors but I haven't been able to test it
-                if self.forest.members[p].parents[0] is not None:
+                if self.forest.members[p].parents is not None:
                     ancestors.extend(self.forest.members[p].parents)
             return ancestors
 
         elif rel == 'relative':
             ancestors = self.w('ancestor', name1)
             relatives = []
+            if ancestors is not None:
+                for a in ancestors:
+                    asibs = self.w('siblings', a)
+                    # print(asibs)
+                    if asibs is not None:
+                        relatives.extend(asibs)
 
-            for a in ancestors:
-                relatives.extend(self.w('siblings', a))
-                
             return relatives
 
         elif rel == 'cousins': # (TODO) Implement
@@ -73,7 +75,7 @@ class Parser(object):
 
         elif rel == 'unrelated': # probably needs improvement
             ancestors = self.w('ancestor', name1)
-            everyone  = self.forest.debug()
+            everyone  = self.forest.getMembers()
             unrelated = []
 
             for p in everyone:
@@ -105,7 +107,7 @@ class Parser(object):
             self.forest.members[name2].setChildren(name2)
 
         self.forest.debug()
-
+"""
 f = Forest.Forest()
 p = Parser(f)
 
@@ -122,4 +124,5 @@ for line in sys.stdin:
         p.x(newline[1], newline[2],newline[3])
     elif newline[0] == 'W':
         p.w(newline[1], newline[2])
-        
+
+"""

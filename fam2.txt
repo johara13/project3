@@ -1,0 +1,30 @@
+E bp bg pt
+E bp bg ollie
+E pt mj tom
+E pt mj ma
+E ma jim jt
+E ma jim patrick
+E ollie ub colleen
+E ollie ub dan
+E colleen jeff jack
+E colleen jeff mikey
+E colleen jeff will
+E dan kathleen brian
+E dan kathleen sean
+E pj katie ceil
+E pj kate annette
+E pj katie bubba
+E bubba gale marcy
+E marcy matt audrey
+E tom ceil jimmy
+E tom ceil kate
+E tom ceil tommy
+E mikey joan joe
+E joe malory mike
+E mike alex david
+W sibling jimmy
+W parent jimmy
+W ancestor jimmy
+W relative jimmy
+W spouse tom
+W unrelated jimmy

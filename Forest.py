@@ -3,8 +3,11 @@ class Forest():
         self.members = {}
 
     def debug(self):
-        for i in self.members:
-            print(i)
+        pass
+        #print(self.members)
 
     def add(self, person):
         self.members[person.name] = person
+
+    def getMembers(self):
+        return self.members.keys()

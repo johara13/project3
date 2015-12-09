@@ -1,56 +1,56 @@
-(E bp bg pt)
-(E bp bg ollie)
-(E pt mj tom)
-(E pt mj ma)
-(E ma jim jt)
-(E ma jim patrick)
-(E ollie ub colleen)
-(E ollie ub dan)
-(E colleen jeff jack)
-(E colleen jeff mikey)
-(E colleen jeff will)
-(E dan kathleen brian)
-(E dan kathleen sean)
-(E pj katie ceil)
-(E pj kate annette)
-(E pj katie bubba)
-(E bubba gale marcy)
-(E marcy matt audrey)
-(E tom ceil jimmy)
-(E tom ceil kate)
-(E tom ceil tommy)
-(E mikey joan joe)
-(E joe malory mike)
-(E mike alex david)
-(R jimmy tommy)
-(R jimmy mikey)
-(R jimmy tom)
-(R jimmy katie)
-(R jimmy ma)
-(R tom jimmy)
-(R tom ceil)
-(R jimmy kathleen)
-(R jimmy jt)
-(W sibling jimmy)
-(W parent jimmy)
-(W ancestor jimmy)
-(W relative jimmy)
-(W spouse tom)
-(W unrelated jimmy)
-(W (cousin 1 0) jimmy)
-(W (cousin 1 1) jimmy)
-(W (cousin 2 0) jimmy)
-(W (cousin 2 1) jimmy)
-(W unrelated jimmy)
-(X jimmy sibling tommy)
-(X mikey sibling jimmy)
-(X tom parent jimmy)
-(X mikey parent jimmy)
-(X mj ancestor jimmy)
-(X kate ancestor jimmy)
-(X ma relative jimmy)
-(X mikey relative jimmy)
-(X mikey (cousin 2 0) jimmy)
-(X mikey (cousin 2 1) jimmy)
-(X kathleen unrelated jimmy)
-(X kate unrelated jimmy)
+E bp bg pt
+E bp bg ollie
+E pt mj tom
+E pt mj ma
+E ma jim jt
+E ma jim patrick
+E ollie ub colleen
+E ollie ub dan
+E colleen jeff jack
+E colleen jeff mikey
+E colleen jeff will
+E dan kathleen brian
+E dan kathleen sean
+E pj katie ceil
+E pj kate annette
+E pj katie bubba
+E bubba gale marcy
+E marcy matt audrey
+E tom ceil jimmy
+E tom ceil kate
+E tom ceil tommy
+E mikey joan joe
+E joe malory mike
+E mike alex david
+R jimmy tommy
+R jimmy mikey
+R jimmy tom
+R jimmy katie
+R jimmy ma
+R tom jimmy
+R tom ceil
+R jimmy kathleen
+R jimmy jt
+W sibling jimmy
+W parent jimmy
+W ancestor jimmy
+W relative jimmy
+W spouse tom
+W unrelated jimmy
+W cousin 1 0 jimmy
+W cousin 1 1 jimmy
+W cousin 2 0 jimmy
+W cousin 2 1 jimmy
+W unrelated jimmy
+X jimmy sibling tommy
+X mikey sibling jimmy
+X tom parent jimmy
+X mikey parent jimmy
+X mj ancestor jimmy
+X kate ancestor jimmy
+X ma relative jimmy
+X mikey relative jimmy
+X mikey cousin 2 0 jimmy
+X mikey cousin 2 1 jimmy
+X kathleen unrelated jimmy
+X kate unrelated jimmy

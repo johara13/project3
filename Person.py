@@ -7,18 +7,10 @@ class Person:
         if par1 == None:
             self.parents = None
         else:
-            self.parents = (par1, par2)
+            self.parents = [par1, par2]
 
     def setChildren(self, child):
         self.children.append(child)
 
     def setSpouse(self, spouse):
         self.spouse.append(spouse)
-
-
-
-
-
-
-
-
