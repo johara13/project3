@@ -41,7 +41,8 @@ class Parser(object):
             return self.forest.members[name1].spouse
 
         elif rel == 'parent':
-            return self.forest.members[name1].parents
+            return self.forest.getParentsOf(name1)
+            #return self.forest.members[name1].parents
 
         elif rel == 'sibling':
             if self.forest.members[name1].parents[0] is not None:
@@ -105,24 +106,3 @@ class Parser(object):
             self.forest.add(p)
             self.forest.members[name1].setChildren(name1)
             self.forest.members[name2].setChildren(name2)
-
-        self.forest.debug()
-"""
-f = Forest.Forest()
-p = Parser(f)
-
-for line in sys.stdin:
-    newline = line.split()
-
-    if newline[0] == 'E' and len(newline) >= 4:
-        p.e(newline[1], newline[2], newline[3])
-    elif newline[0] == 'E' and len(newline) < 4:
-        p.e(newline[1], newline[2])
-    elif newline[0] == 'R':
-        p.r(newline[1], newline[2])
-    elif newline[0] == 'X':
-        p.x(newline[1], newline[2],newline[3])
-    elif newline[0] == 'W':
-        p.w(newline[1], newline[2])
-
-"""

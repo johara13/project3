@@ -22,9 +22,3 @@ E tom ceil tommy
 E mikey joan joe
 E joe malory mike
 E mike alex david
-W sibling jimmy
-W parent jimmy
-W ancestor jimmy
-W relative jimmy
-W spouse tom
-W unrelated jimmy
