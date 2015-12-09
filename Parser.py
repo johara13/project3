@@ -3,8 +3,9 @@ import Forest
 import Person
 # (TODO) Create class for parser (instantiated with Forest Object)
 
+
 def listoverlap(a, b):   # function to find if two lists share any elements
-    s=set(b)
+    s = set(b)
     return any(n in s for n in a)
 
 
@@ -12,17 +13,23 @@ class Parser(object):
     def __init__(self, forest):
         self.forest = forest
 
-
-
     def r(self, name1, name2):
     # Finds the closest relation of 2 people
-        if name1 in self.forest.members[name2].spouse:
+        if name1 in self.w('spouse',name2):
             return 'Spouse'
-        elif name1 in self.forest.members[name2].parents or name2 in self.forest.members[name1].parents:
+        elif name1 in self.w('parent',name2) or name2 in self.w('parent',name1):
             return 'Parent'
-        elif self.forest.members[name1].parents == self.forest.members[name2].parents:
-            #only works if list of parents is in same order
+        elif name1 in self.w('sibling',name2):
+            # only works if list of parents is in same order
             return 'Sibling'
+        elif name1 in self.w('ancestor',name2) or name2 in self.w('ancestor',name1):
+            return 'Ancestor'
+        elif name1 in self.w('relative',name2) or name2 in self.w('relative',name1):
+            return 'Relative'
+        elif name1 in self.w('unrelated',name2):
+            return 'Unrelated'
+        else:
+            return 'Cousins'
 
     def x(self, name1, r, name2):
     # Finds if name1 is r relation to name2
@@ -61,7 +68,7 @@ class Parser(object):
             return relatives
         elif rel == 'cousins':
             print('cousins')
-        elif rel == 'unrelated': # needs improvement
+        elif rel == 'unrelated': # probably needs improvement
             ancestors = self.w('ancestor',name1)
             everyone = self.forest.debug()
             unrelated = []
@@ -70,8 +77,6 @@ class Parser(object):
                 if not listoverlap(ancestors,pa):
                     unrelated.append(p)
             return unrelated
-
-
 
     def e(self, name1, name2, child=None):
         print('E', name1, name2, child)
@@ -94,8 +99,8 @@ class Parser(object):
             self.forest.members[name2].setChildren(name2)
 
         self.forest.debug()
-f=Forest.Forest()
-p=Parser(f)
+f = Forest.Forest()
+p = Parser(f)
 
 for line in sys.stdin:
     newline = line.split()
@@ -105,8 +110,9 @@ for line in sys.stdin:
     elif newline[0] == 'E' and len(newline) < 4:
         p.e(newline[1], newline[2])
     elif newline[0] == 'R':
-        p.r(newline[1],newline[2])
+        p.r(newline[1], newline[2])
     elif newline[0] == 'X':
-        p.x(newline[1],newline[2],newline[3])
+        p.x(newline[1], newline[2],newline[3])
     elif newline[0] == 'W':
-        p.w(newline[1],newline[2])
+        p.w(newline[1], newline[2])
+        
