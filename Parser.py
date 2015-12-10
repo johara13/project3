@@ -3,7 +3,7 @@ import Forest
 import Person
 
 def listoverlap(a, b):   # function to find if two lists share any elements
-    s = set([b])
+    s = set(b)
     return any(n in s for n in a)
 
 class Parser(object):
@@ -67,7 +67,7 @@ class Parser(object):
             unrelated = []
 
             for p in everyone:
-                pa = self.w('ancestors', p)
+                pa = self.w('ancestor', p)
                 if not listoverlap(ancestors, pa):
                     unrelated.append(p)
             return unrelated
