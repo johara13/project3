@@ -34,6 +34,7 @@ R jimmy jt
 W sibling jimmy
 W parent jimmy
 W ancestor jimmy
+W ancestor pj
 W relative jimmy
 W spouse tom
 W unrelated jimmy

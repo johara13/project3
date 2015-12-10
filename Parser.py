@@ -3,7 +3,7 @@ import Forest
 import Person
 
 def listoverlap(a, b):   # function to find if two lists share any elements
-    s = set([b])
+    s = set(b)
     return any(n in s for n in a)
 
 class Parser(object):
@@ -44,11 +44,13 @@ class Parser(object):
             return self.forest.getParentsOf(name1)
 
         elif rel == 'sibling':
-            if len(self.forest.members[name1].parents) > 1:
+            if not self.forest.exists(name1):
+                return name1
+            elif self.forest.members[name1].parents is not None:
                 return self.forest.getSiblingsOf(name1)
             else:
                 # Adam & Eve or unrelated person
-                return [p.name]
+                return name1
                 
         elif rel == 'ancestor':
             return self.forest.getAncestorsOf(name1)
@@ -65,7 +67,7 @@ class Parser(object):
             unrelated = []
 
             for p in everyone:
-                pa = self.w('ancestors', p)
+                pa = self.w('ancestor', p)
                 if not listoverlap(ancestors, pa):
                     unrelated.append(p)
             return unrelated
