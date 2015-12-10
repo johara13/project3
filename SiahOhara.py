@@ -1,14 +1,17 @@
+#!/usr/bin/python3
+
 import Forest, Parser, Person
 import sys
+
 if __name__ == '__main__':
 
     f = Forest.Forest()
     p = Parser.Parser(f)
 
     for line in sys.stdin:
+        
         newline = line.lower().split()
-    
-        print(newline)
+        print(line)
 
         if newline[0] == 'e' and len(newline) >= 4:
             p.e(newline[1], newline[2], newline[3])
@@ -19,6 +22,9 @@ if __name__ == '__main__':
         elif newline[0] == 'x':
             print('X')
         elif newline[0] == 'w':
-            print(p.w(newline[1], newline[2]))
+            answer = p.w(newline[1], newline[2])
+            if answer is not None:
+                print(str(answer))
 
-    f.debug()
+        print()
+        

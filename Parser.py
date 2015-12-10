@@ -42,15 +42,13 @@ class Parser(object):
 
         elif rel == 'parent':
             return self.forest.getParentsOf(name1)
-            #return self.forest.members[name1].parents
 
         elif rel == 'sibling':
-            if self.forest.members[name1].parents[0] is not None:
-                p1 = self.forest.members[self.forest.members[name1].parents[0]]
-                p2 = self.forest.members[self.forest.members[name1].parents[1]]
-                c1 = p1.children
-                c2 = p2.children
-                return list(set(c1) & set(c2))
+            if len(self.forest.members[name1].parents) > 1:
+                return self.forest.getSiblingsOf(name1)
+            else:
+                # Adam & Eve or unrelated person
+                return [p.name]
                 
         elif rel == 'ancestor':
             ancestors = self.forest.members[name1].parents
@@ -65,7 +63,6 @@ class Parser(object):
             if ancestors is not None:
                 for a in ancestors:
                     asibs = self.w('siblings', a)
-                    # print(asibs)
                     if asibs is not None:
                         relatives.extend(asibs)
 
@@ -86,8 +83,6 @@ class Parser(object):
             return unrelated
 
     def e(self, name1, name2, child=None):
-        print('E', name1, name2, child)
-
         # creates parent 1 if they do not exist yet
         if name1 not in self.forest.members: 
             p = Person.Person(name1)
@@ -98,11 +93,14 @@ class Parser(object):
             p = Person.Person(name2)
             self.forest.add(p)
 
-        self.forest.members[name1].setSpouse(name2)
-        self.forest.members[name2].setSpouse(name1)
-
-        if child != None:
-            p = Person.Person(child,name1,name2)
-            self.forest.add(p)
-            self.forest.members[name1].setChildren(name1)
-            self.forest.members[name2].setChildren(name2)
+        par1, par2 = self.forest.members[name1], self.forest.members[name2]
+        
+        if par1.name not in par2.spouse:
+            par1.setSpouse(name2)
+            par2.setSpouse(name1)        
+        
+        if child is not None:
+            c = Person.Person(child, name1, name2)
+            self.forest.add(c)
+            par1.setChildren(child)
+            par2.setChildren(child)

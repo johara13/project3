@@ -22,3 +22,10 @@ E tom ceil tommy
 E mikey joan joe
 E joe malory mike
 E mike alex david
+W parent david
+W parent alex
+W parent godfrey
+W parent william
+W sibling kate
+W spouse colleen
+W spouse jeff

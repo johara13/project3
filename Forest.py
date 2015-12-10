@@ -19,7 +19,7 @@ class Forest():
         self.members[person.name] = person
 
     def getParentsOf(self, person):
-        p = self.members[person]
+        p = self.members.get(person, None)
         # Check to see if person exists
         if p is None:
             return None
@@ -29,7 +29,7 @@ class Forest():
             return p.parents
         else:
             # Adam/Eve generation
-            return p
+            return [p.name]
     
     def getSiblingsOf(self, person):
         p = self.members[person]
@@ -39,11 +39,11 @@ class Forest():
 
         if p.parents is not None:
             # Maybe replace with list comprehension for intersection
-            parent1 = self.members[p.parents[0]]
-            parent2 = self.members[p.parents[1]]
-            children1 = set([parent1.children])
-            children2 = set([parent2.children])
-
+            parent1   = self.members[p.parents[0]]
+            parent2   = self.members[p.parents[1]]
+            children1 = set(parent1.children)
+            children2 = set(parent2.children)
+            
             return list(children1 & children2)
         else:
             # You are your own sibling (A&E)
@@ -51,7 +51,7 @@ class Forest():
 
 
     def getAncestorsOf(self, person):
-        curr, p = self.members[person], self.members[person]
+        curr, p = self.members.get(person, None), self.members.get(person, None)
         ancestors = set([])
         # Check to see if person exists
         if p is None:
