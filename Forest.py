@@ -54,7 +54,7 @@ class Forest():
         p = self.members.get(person, None)
         
         # Check to see if person exists
-        if p is None:
+        if p is None or p.parents is None:
             return [person] # If not they are their own ancestor... I think.
 
         ancestors = set(p.parents)
@@ -78,17 +78,24 @@ class Forest():
         # Check to see if person exists
         if p is None:
             return None
+        else:
+            relatives = []
+            for person2 in self.members.keys():
+                if (self.isRelatedTo(person, person2)):
+                    relatives.append(person2)
+            return relatives
 
-        relatives = set(p.children)
-        newgen    = p.children
-
-        while (newgen):
-            curr   = self.members[newgen[0]]
-            newgen = newgen[1:]
-
-            if curr.children is not None:
-                newgen.extend(curr.children)
-
-            relatives.add(curr.name)
-
-        return list(relatives)
+    def isRelatedTo(self, person1, person2):
+        p1ans = self.getAncestorsOf(person1)
+        p2ans = self.getAncestorsOf(person2)
+        
+        if len(p1ans) <= len(p2ans):
+            for i in p1ans:
+                if i in p2ans:
+                    return True
+        else:
+            for i in p2ans:
+                if i in p1ans:
+                    return True
+        
+        return False

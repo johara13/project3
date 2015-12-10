@@ -15,7 +15,10 @@ if __name__ == '__main__':
         if len(newline) < 2:
             continue
         else:
-            print(line)
+            if line[-1] == '\n':
+                print(line[:-1])
+            else: 
+                print(line)
 
         if newline[0] == 'e' and len(newline) >= 4:
             p.e(newline[1], newline[2], newline[3])
@@ -30,3 +33,5 @@ if __name__ == '__main__':
             if answer is not None:
                 print(str(answer))
         
+        print()
+    # print(f.isRelatedTo('a', 'b'))
