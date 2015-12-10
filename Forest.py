@@ -81,7 +81,7 @@ class Forest():
         else:
             relatives = []
             for person2 in self.members.keys():
-                if (self.isRelatedTo(person, person2)):
+                if self.isRelatedTo(person, person2):
                     relatives.append(person2)
             return relatives
 

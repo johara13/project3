@@ -28,12 +28,15 @@ class Parser(object):
             return 'Cousins'
 
     def x(self, name1, r, name2):
-    # Finds if name1 is r relation to name2
-        ll=self.w(r,name2)
-        if name1 in ll:
-            return True
-        else:
+        # Finds if name1 is r relation to name2
+        ll = self.w(r,name2)
+        if ll is None:
             return False
+        else:
+            if name1 in ll:
+                return True
+            else:
+                return False
 
     def w(self, rel, name1):
         # Prints a list of all people relation (rel) related to name1

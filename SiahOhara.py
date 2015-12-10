@@ -25,9 +25,13 @@ if __name__ == '__main__':
         elif newline[0]   == 'e' and len(newline) < 4:
             p.e(newline[1], newline[2])
         elif newline[0] == 'r':
-            p.r(newline[1], newline[2])
+            answer = p.r(newline[1], newline[2])
+            if answer is not None:
+                print(str(answer))
         elif newline[0] == 'x':
-            print('x')
+            answer = p.x(newline[1], newline[2], newline[3])
+            if answer is not None:
+                print(str(answer))
         elif newline[0] == 'w':
             answer = p.w(newline[1], newline[2])
             if answer is not None:
