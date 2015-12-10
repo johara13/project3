@@ -2,5 +2,14 @@ E d e b
 E f g
 E f g c
 E b c a
+E a h i
+E a h j
+E k i
+E k i l
+E k i m
+
 W parent a
 W ancestor a
+W relative b
+W relative c
+W relative d

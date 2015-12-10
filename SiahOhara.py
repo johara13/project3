@@ -14,8 +14,8 @@ if __name__ == '__main__':
 
         if len(newline) < 2:
             continue
-
-        print(line)
+        else:
+            print(line)
 
         if newline[0] == 'e' and len(newline) >= 4:
             p.e(newline[1], newline[2], newline[3])
@@ -24,11 +24,9 @@ if __name__ == '__main__':
         elif newline[0] == 'r':
             p.r(newline[1], newline[2])
         elif newline[0] == 'x':
-            print('X')
+            print('x')
         elif newline[0] == 'w':
             answer = p.w(newline[1], newline[2])
             if answer is not None:
                 print(str(answer))
-
-        # print()
         
