@@ -44,11 +44,13 @@ class Parser(object):
             return self.forest.getParentsOf(name1)
 
         elif rel == 'sibling':
-            if len(self.forest.members[name1].parents) > 1:
+            if not self.forest.exists(name1):
+                return name1
+            elif self.forest.members[name1].parents is not None:
                 return self.forest.getSiblingsOf(name1)
             else:
                 # Adam & Eve or unrelated person
-                return [p.name]
+                return name1
                 
         elif rel == 'ancestor':
             return self.forest.getAncestorsOf(name1)

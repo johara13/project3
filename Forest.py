@@ -54,7 +54,7 @@ class Forest():
         p = self.members.get(person, None)
         
         # Check to see if person exists
-        if p is None:
+        if p is None or p.parents is None:
             return [person] # If not they are their own ancestor... I think.
 
         ancestors = set(p.parents)
