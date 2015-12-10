@@ -36,7 +36,7 @@ class Parser(object):
             return False
 
     def w(self, rel, name1):
-    # Prints a list of all people relation (rel) related to name1
+        # Prints a list of all people relation (rel) related to name1
         if rel == 'spouse':
             return self.forest.members[name1].spouse
 
@@ -51,11 +51,15 @@ class Parser(object):
                 return [p.name]
                 
         elif rel == 'ancestor':
+            """
             ancestors = self.forest.members[name1].parents
             for p in ancestors:    # this should work to find the list of ancestors but I haven't been able to test it
                 if self.forest.members[p].parents is not None:
                     ancestors.extend(self.forest.members[p].parents)
+            
             return ancestors
+            """
+            return self.forest.getAncestorsOf(name1)
 
         elif rel == 'relative':
             ancestors = self.w('ancestor', name1)

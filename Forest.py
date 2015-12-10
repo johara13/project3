@@ -35,7 +35,7 @@ class Forest():
         p = self.members[person]
         # Check to see if person exists
         if p is None:
-            return None
+            return [person]
 
         if p.parents is not None:
             # Maybe replace with list comprehension for intersection
@@ -51,8 +51,23 @@ class Forest():
 
 
     def getAncestorsOf(self, person):
-        curr, p = self.members.get(person, None), self.members.get(person, None)
-        ancestors = set([])
+        p = self.members.get(person, None)
+        
         # Check to see if person exists
         if p is None:
             return None
+
+        ancestors = set(p.parents)
+        newgen    = p.parents
+
+        while (newgen):
+            curr   = self.members[newgen[0]]
+            newgen = newgen[1:]
+
+            if curr.parents is not None:
+                newgen.append(curr.parents[0])
+                newgen.append(curr.parents[1])
+
+            ancestors.add(curr.name)
+
+        return list(ancestors)

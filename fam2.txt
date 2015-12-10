@@ -29,3 +29,7 @@ W parent william
 W sibling kate
 W spouse colleen
 W spouse jeff
+
+E Rex colleen
+W spouse colleen
+W ancestor joe

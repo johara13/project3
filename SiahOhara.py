@@ -11,6 +11,10 @@ if __name__ == '__main__':
     for line in sys.stdin:
         
         newline = line.lower().split()
+
+        if len(newline) < 2:
+            continue
+
         print(line)
 
         if newline[0] == 'e' and len(newline) >= 4:
@@ -26,5 +30,5 @@ if __name__ == '__main__':
             if answer is not None:
                 print(str(answer))
 
-        print()
+        # print()
         
