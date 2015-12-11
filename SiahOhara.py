@@ -29,12 +29,20 @@ if __name__ == '__main__':
             if answer is not None:
                 print(str(answer))
         elif newline[0] == 'x':
-            answer = p.x(newline[1], newline[2], newline[3])
+            if newline[2] != 'cousin':
+                answer = p.x(newline[1], newline[2], newline[3])
+            else:
+                rel = [newline[2], int(newline[3]), int(newline[4])]
+                answer = p.x(newline[1], rel, newline[5])
             if answer is not None:
                 print(str(answer))
         elif newline[0] == 'w':
-            answer = p.w(newline[1], newline[2])
-            if answer is not None:
+            if newline[1] != 'cousin':
+                answer = p.w(newline[1], newline[2])
+                if answer is not None:
+                    print(str(answer))
+            else:  # if the relation is cousin passes 'cousin # #' as a list for the first argument
+                answer = p.w([newline[1], int(newline[2]), int(newline[3])], newline[4])
                 print(str(answer))
         
         print()

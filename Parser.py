@@ -29,7 +29,7 @@ class Parser(object):
 
     def x(self, name1, r, name2):
         # Finds if name1 is r relation to name2
-        ll = self.w(r,name2)
+        ll = self.w(r, name2)
         if ll is None:
             return False
         else:
@@ -61,8 +61,8 @@ class Parser(object):
         elif rel == 'relative':
             return self.forest.getRelativesOf(name1)
 
-        elif rel == 'cousins': # (TODO) Implement
-            print('cousins')
+        elif rel[0] == 'cousin': # (TODO) Implement
+            return self.forest.getCousinsOf(name1, rel[1], rel[2])
 
         elif rel == 'unrelated': # probably needs improvement
             ancestors = self.w('ancestor', name1)

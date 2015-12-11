@@ -52,6 +52,7 @@ X kate ancestor jimmy
 X ma relative jimmy
 X mikey relative jimmy
 X mikey cousin 2 0 jimmy
+W cousin 2 0 mikey
 X mikey cousin 2 1 jimmy
 X kathleen unrelated jimmy
 X kate unrelated jimmy
