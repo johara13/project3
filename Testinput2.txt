@@ -1,0 +1,100 @@
+E Chris Jane John
+E Chris Jane Mark
+E Alexa John Sam
+E Alexa John Drew
+E Meg Sam David
+E Drew Jill Kent
+E Mark Kim Jack
+E Jack Jen Mike
+E Jack Jen Tim
+X Mike Sibling Kent
+X Chris Sibling Jane
+X Sam Sibling Sam
+X Mike Sibling Tim
+X Tammy Sibling Tim
+X Kent Spouse Mike
+X Kent Spouse Drew
+X Alexa Spouse John
+X David Spouse Tammy
+X John Parent Drew
+X Drew Parent John
+X Sam Parent Chris
+X Chris Parent Sam
+X David Parent David
+X Chris Parent Chris
+X Drew Parent Tammy
+X Drew Ancestor Jill
+X Chris Ancestor Kent
+X Mark Ancestor Jack
+X Alexa Ancestor Meg
+X Tammy Ancestor Alexa
+X Chris Ancestor Chris
+X Mark Ancestor Jane
+X Meg Ancestor Mike
+X Tammy Ancestor Tammy
+X Kent Relative Chris
+X Chris Relative Kent
+X Drew Relative Jill
+X David Relative Mike
+X David Relative Jen
+X Meg Relative Jen
+X Alexa Relative Tammy
+X Drew Relative Tammy
+X Tammy Relative Tammy
+X David Relative David
+X Tammy Unrelated Tammy
+X Tammy Unrelated Alexa
+X Kim Unrelated Jack
+X Kim Unrelated Drew
+X Chris Unrelated Kent
+X Kent Unrelated Chris
+X Kent Unrelated Kent
+X Drew Cousin 1 0 Jack
+X Drew Cousin 1 1 Tim
+X Kent Cousin 2 0 Tim
+X Kent Cousin 2 1 Jack
+X Kent Cousin 1 1 Jack
+W Cousin 1 0 Drew
+W Cousin 1 1 Drew
+W Cousin 1 0 Jack
+W Cousin 1 1 Jack
+X Jack Cousin 1 1 Drew
+X Drew Cousin 1 1 Jack
+X Meg Cousin 2 0 David
+W Meg Cousin 1 0
+X John Cousin 1 0 John
+W Cousin 1 0 Chris 
+W Ancestor Sam
+W Sibling Drew
+W Sibling Sam
+W Sibling David
+W Sibling Tammy
+W Spouse Drew
+W Spouse Sam
+W Spouse Tammy
+E Meg Drake Louis
+W Spouse Meg
+W Parent Kent
+W Parent Chris
+W Parent John
+W Parent Tammy
+W Relative Mike
+W Relative Alexa
+W Relative Meg
+W Relative Mark
+W Relative Jane
+W Relative Drake
+W Relative Tammy
+W Unrelated Drake
+W Unrelated Chris
+W Unrelated Kent
+W Unrelated Tammy
+R David Meg
+R Meg David
+R Sam Drew
+R Chris Jane
+R Chris Chris
+R Louis Tim
+R Tammy Tammy
+R Tammy Sam
+R Alexa David

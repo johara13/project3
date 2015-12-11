@@ -8,8 +8,14 @@ E k i
 E k i l
 E k i m
 
+E hoho gogo
+
 W parent a
 W ancestor a
 W relative b
 W relative c
 W relative d
+
+W unrelated hoho
+W unrelated gogo
+W unrelated d

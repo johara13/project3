@@ -11,27 +11,48 @@ class Parser(object):
         self.forest = forest
 
     def r(self, name1, name2):
-    # Finds the closest relation of 2 people
+        # Finds the closest relation of 2 people
+        p1 = self.forest.exists(name1)
+        p2 = self.forest.exists(name2) 
+        
+        if not p1 or not p2:
+            # One Case: R FakePerson FakePerson ?
+            return 'Unrelated'
+
+
         if name1 in self.w('spouse', name2):
             return 'Spouse'
+
         elif name1 in self.w('parent', name2) or name2 in self.w('parent', name1):
             return 'Parent'
+
         elif name1 in self.w('sibling', name2):
             return 'Sibling'
+
         elif name1 in self.w('ancestor', name2) or name2 in self.w('ancestor', name1):
             return 'Ancestor'
+
         elif name1 in self.w('relative', name2) or name2 in self.w('relative', name1):
             return 'Relative'
+
         elif name1 in self.w('unrelated', name2):
             return 'Unrelated'
+
         else:
             return 'Cousins'
 
     def x(self, name1, r, name2):
         # Finds if name1 is r relation to name2
+        p1 = self.forest.members.get(name1, None)
+        p2 = self.forest.members.get(name2, None)
         ll = self.w(r, name2)
-        if ll is None:
+
+        if (not p1 or not p2) and (r == 'unrelated'):
+            return True
+
+        elif ll is None:
             return False
+
         else:
             if name1 in ll:
                 return True
@@ -40,20 +61,21 @@ class Parser(object):
 
     def w(self, rel, name1):
         # Prints a list of all people relation (rel) related to name1
-        if rel == 'spouse':
-            return self.forest.members[name1].spouse
+        p = self.forest.members.get(name1, None)
 
+        if rel == 'spouse':
+            return self.forest.getSpousesOf(name1)
+            
         elif rel == 'parent':
             return self.forest.getParentsOf(name1)
 
         elif rel == 'sibling':
-            if not self.forest.exists(name1):
-                return name1
-            elif self.forest.members[name1].parents is not None:
+            if p and p.parents is not None:
+                # Person and parents exist
                 return self.forest.getSiblingsOf(name1)
             else:
                 # Adam & Eve or unrelated person
-                return name1
+                return [name1]
                 
         elif rel == 'ancestor':
             return self.forest.getAncestorsOf(name1)
@@ -65,15 +87,7 @@ class Parser(object):
             return self.forest.getCousinsOf(name1, rel[1], rel[2])
 
         elif rel == 'unrelated': # probably needs improvement
-            ancestors = self.w('ancestor', name1)
-            everyone  = self.forest.getMembers()
-            unrelated = []
-
-            for p in everyone:
-                pa = self.w('ancestor', p)
-                if not listoverlap(ancestors, pa):
-                    unrelated.append(p)
-            return unrelated
+            return self.forest.getUnrelatedOf(name1)
 
     def e(self, name1, name2, child=None):
         # creates parent 1 if they do not exist yet

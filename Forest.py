@@ -10,7 +10,8 @@ class Forest():
             print(m)
 
     def exists(self, person):
-        if self.members[person] is not None:
+        p = self.members.get(person, None)
+        if p is not None:
             return True
 
         return False
@@ -31,6 +32,13 @@ class Forest():
             # Adam/Eve generation
             return [p.name]
     
+    def getSpousesOf(self, person):
+        p = self.members.get(person, None)
+        if p is None:
+            return None
+        else:
+            return list(p.spouse)
+
     def getSiblingsOf(self, person):
         p = self.members[person]
         # Check to see if person exists
@@ -115,6 +123,7 @@ class Forest():
                     if self.members[i].children is not None:
                         cousins.extend(self.members[i].children)
                 return set(cousins)
+
             if n > 1 and m == 0:
                 cousins = []
                 aunts = []
@@ -128,11 +137,14 @@ class Forest():
                     if self.members[i].children is not None:
                         cousins.extend(self.members[i].children)
                 return set(cousins)
+
             if n >= 1 and m > 0:
                 cousins = []
                 temp = 0
+                
                 cchildren = self.getCousinsOf(person, n, 0)
-                cparents = self.getCousinsOf(person, n+1, 0) # different variables to navigate up and down the family tree at the same time
+                # different variables to navigate up and down the family tree at the same time
+                cparents = self.getCousinsOf(person, n+1, 0) 
                 temp2 = []
                 while temp < m:
                     for i in cparents:
@@ -156,8 +168,11 @@ class Forest():
                 cousins.extend(cparents)
                 return set(cousins)
 
-
-
-
-
-
+    def getUnrelatedOf(self, person):
+        p = self.members.get(person, None)
+        unrelated = []
+        for other in self.members.keys():
+            rels = self.getRelativesOf(other)
+            if person not in rels:
+                unrelated.append(other)
+        return unrelated
