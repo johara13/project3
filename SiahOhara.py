@@ -40,10 +40,15 @@ if __name__ == '__main__':
             if newline[1] != 'cousin':
                 answer = p.w(newline[1], newline[2])
                 if answer is not None:
-                    print(str(answer))
+                    answer = sorted(answer, key=str.lower)
+                    for i in answer:
+                        print(i)
             else:  # if the relation is cousin passes 'cousin # #' as a list for the first argument
                 answer = p.w([newline[1], int(newline[2]), int(newline[3])], newline[4])
-                print(str(answer))
+                if answer is not None:
+                    answer = sorted(answer, key=str.lower)
+                    for i in answer:
+                        print(i)
         
         print()
     # print(f.isRelatedTo('a', 'b'))
