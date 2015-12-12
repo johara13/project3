@@ -33,7 +33,7 @@ class Forest():
             return [p.name]
     
     def getSiblingsOf(self, person):
-        p = self.members[person]
+        p = self.members.get(person, None)
         # Check to see if person exists
         if p is None:
             return [person]

@@ -23,7 +23,7 @@ if __name__ == '__main__':
         if newline[0] == 'e' and len(newline) >= 4:
             p.e(newline[1], newline[2], newline[3])
 
-        elif newline[0]   == 'e' and len(newline) < 4:
+        elif newline[0]  == 'e' and len(newline) < 4:
             p.e(newline[1], newline[2])
 
         elif newline[0] == 'r':
@@ -38,7 +38,7 @@ if __name__ == '__main__':
                 rel = [newline[2], int(newline[3]), int(newline[4])]
                 answer = p.x(newline[1], rel, newline[5])
             if answer is not None:
-                print(str(answer))
+                print('Yes') if answer else print('No')
 
         elif newline[0] == 'w':
             if newline[1] != 'cousin':
