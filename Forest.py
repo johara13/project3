@@ -140,15 +140,17 @@ class Forest():
                 cousins = []
                 temp = 0
                 cchildren = self.getCousinsOf(person, n, 0)
-                cparents = self.getCousinsOf(person, n+1, 0) # different variables to navigate up and down the family tree at the same time
+                cparents = [person] # different variables to navigate up and down the family tree at the same time
                 temp2 = []
                 while temp < m:
                     for i in cparents:
-                        if self.getParentsOf(i)[0] != i:
-                            if self.isRelatedTo(self.getParentsOf(i)[0], person):
-                                temp2.append(self.getParentsOf(i)[0])
-                            if self.isRelatedTo(self.getParentsOf(i)[1], person):
-                                temp2.append(self.getParentsOf(i)[0])
+                        if i is not None:
+                            parents = self.getParentsOf(i)
+                            if parents is not None and len(parents) > 1 and self.getParentsOf(i)[0] != i:
+                                if self.isRelatedTo(self.getParentsOf(i)[0], person):
+                                    temp2.append(self.getParentsOf(i)[0])
+                                if self.isRelatedTo(self.getParentsOf(i)[1], person):
+                                    temp2.append(self.getParentsOf(i)[1])
 
                     cparents = temp2
                     temp2 = []
@@ -159,9 +161,10 @@ class Forest():
                     cchildren = temp2
                     temp2 = []
                     temp += 1
-
                 cousins.extend(cchildren)
-                cousins.extend(cparents)
+                for i in cparents:
+                    if self.getCousinsOf(i, n, 0) is not None:
+                        cousins.extend(self.getCousinsOf(i, n, 0))
                 return set(cousins)
 
             """
