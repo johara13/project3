@@ -1,0 +1,22 @@
+E A B E
+E A B F
+E A B G
+E B C H
+E D H I
+E D H J
+E K E L
+E C D
+E K J
+E F L M
+E N O P
+E Q R T
+E Q R S
+E Q R U
+E P T V
+E N V W
+E N V X
+E Y Z O
+E Y Z Q
+E F H AA
+W cousin 1 0 s
+X s cousin 1 0 p

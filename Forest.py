@@ -32,13 +32,6 @@ class Forest():
             # Adam/Eve generation
             return [p.name]
     
-    def getSpousesOf(self, person):
-        p = self.members.get(person, None)
-        if p is None:
-            return None
-        else:
-            return list(p.spouse)
-
     def getSiblingsOf(self, person):
         p = self.members[person]
         # Check to see if person exists
@@ -56,6 +49,13 @@ class Forest():
         else:
             # You are your own sibling (A&E)
             return [p.name]
+
+    def getSpousesOf(self, person):
+        p = self.members.get(person, None)
+        if p is None:
+            return None
+        else:
+            return p.spouse
 
 
     def getAncestorsOf(self, person):
@@ -109,70 +109,68 @@ class Forest():
         return False
 
     def getCousinsOf(self, person, n, m):
-        if self.getParentsOf(person)[0] != person:
+        p = self.members.get(person, None)
+        
+        if p is None:
+            return None
 
-            parents = self.getParentsOf(person)
+        myans = self.walkUp(person, n)
+        siblings = []
+        for s in myans:
+            othersiblings = self.getSiblingsOf(s)
+            if s in othersiblings:
+                othersiblings.remove(s)
+            siblings.extend(othersiblings)
 
-            if n == 1 and m == 0:
-                temp = self.getSiblingsOf(self.getParentsOf(person)[0])
-                temp.extend(self.getSiblingsOf(self.getParentsOf(person)[1]))
-                s = set(parents)
-                aunts = [x for x in temp if x not in s]
-                cousins = []
-                for i in aunts:
-                    if self.members[i].children is not None:
-                        cousins.extend(self.members[i].children)
-                return set(cousins)
+        cousins = []
+        for sib in siblings:
+            subcus = self.walkDown(sib, n)
+            cousins.extend(subcus)
 
-            if n > 1 and m == 0:
-                cousins = []
-                aunts = []
-                p1c = self.getCousinsOf(parents[0], n-1, m)
-                p2c = self.getCousinsOf(parents[1], n-1, m)
-                if p1c is not None:
-                    aunts.extend(p1c)
-                if p2c is not None:
-                    aunts.extend(p2c)
-                for i in aunts:
-                    if self.members[i].children is not None:
-                        cousins.extend(self.members[i].children)
-                return set(cousins)
+        # If simple cousin request -- return 'base' cousins
+        if m <= 0:
+            return cousins
 
-            if n >= 1 and m > 0:
-                cousins = []
-                temp = 0
-                
-                cchildren = self.getCousinsOf(person, n, 0)
-                # different variables to navigate up and down the family tree at the same time
-                cparents = self.getCousinsOf(person, n+1, 0) 
-                temp2 = []
-                while temp < m:
-                    for i in cparents:
-                        if self.getParentsOf(i)[0] != i:
-                            if self.isRelatedTo(self.getParentsOf(i)[0], person):
-                                temp2.append(self.getParentsOf(i)[0])
-                            if self.isRelatedTo(self.getParentsOf(i)[1], person):
-                                temp2.append(self.getParentsOf(i)[0])
+        # Gets everyone the correct degree of separation from 'base' cousin
+        removed_cousins = []
+        for cuz in cousins:
+            removed_cousins.extend(self.walkUp(cuz, m))
+            removed_cousins.extend(self.walkDown(cuz, m))
 
-                    cparents = temp2
-                    temp2 = []
-                    for i in cchildren:
-                        if self.members[i].children is not None:
-                            temp2.extend(self.members[i].children)
+        # Gets the cousins that are related and removed correctly
+        correct_cousins_removed = []
+        for cuz in removed_cousins:
+            if self.isRelatedTo(cuz, person) and cuz not in correct_cousins_removed:
+                correct_cousins_removed.append(cuz)
 
-                    cchildren = temp2
-                    temp2 = []
-                    temp += 1
+        return correct_cousins_removed
 
-                cousins.extend(cchildren)
-                cousins.extend(cparents)
-                return set(cousins)
+    def walkUp(self, person, levels):
+        deck, parents = [person], []
+        while deck and levels > 0:
+            for p in deck:
+                par = self.getParentsOf(p)
+                if par is not None and len(par) > 1:
+                    parents.append(par[0])
+                    parents.append(par[1])
+            deck, parents = parents, []
+            levels -= 1
+        return deck
+
+    def walkDown(self, person, levels):
+        deck, children = [person], []
+        while deck and levels > 0:
+            for c in deck:
+                kids = self.members.get(c).children
+                if kids is not None:
+                    children.extend(kids)
+            deck, children = children, []
+            levels -= 1
+        return deck
 
     def getUnrelatedOf(self, person):
-        p = self.members.get(person, None)
-        unrelated = []
-        for other in self.members.keys():
-            rels = self.getRelativesOf(other)
-            if person not in rels:
-                unrelated.append(other)
-        return unrelated
+        unrel = []
+        for p in self.members.keys():
+            if not self.isRelatedTo(p, person):
+                unrel.append(p)
+        return unrel

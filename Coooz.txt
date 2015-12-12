@@ -1,0 +1,58 @@
+E A B E
+E A B F
+E A B G
+E B C H
+E D H I
+E D H J
+E K E L
+E C D
+E K J
+E F L M
+E N O P
+E Q R T
+E Q R S
+E Q R U
+E P T V
+E N V W
+E N V X
+E Y Z O
+E Y Z Q
+E F H AA
+W relative W
+W ancestor M
+W sibling S
+W parent S
+W parent P
+W ancestor I
+W relative ImHereToBreakYourTree
+W relative J
+W cousin 1 0 J
+w cousin 1 0 L
+R I J
+w cousin 2 1 L
+x l cousin 2 0 j
+x s cousin 1 0 p
+x p cousin 1 1 v
+x v cousin 1 1 p
+w cousin 1 0 l
+w cousin 1 0 aa
+R I C
+R C I
+R G D
+R X FinnaBreakYoTree
+R W Z
+R P O
+R O P
+X S parent R
+X R parent S
+X N ancestor X
+X H parent J
+x ImNotInTheTree unrelated ImNotEitherSoThisShouldReturnYes
+x f sibling MoreTrollingNotInTheTree
+X F sibling G
+X W relative U
+X J spouse K
+X G unrelated D
+X a ancestor a
+W ancestor a
+W unrelated N
