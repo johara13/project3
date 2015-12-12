@@ -1,3 +1,5 @@
+E Y Z O
+E Y Z Q
 E A B E
 E A B F
 E A B G
@@ -15,8 +17,6 @@ E Q R U
 E P T V
 E N V W
 E N V X
-E Y Z O
-E Y Z Q
 E F H AA
 W cousin 1 0 s
 X s cousin 1 0 p

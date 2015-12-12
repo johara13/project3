@@ -23,16 +23,16 @@ class Parser(object):
         if name1 in self.w('spouse', name2):
             return 'Spouse'
 
-        elif name1 in self.w('parent', name2) or name2 in self.w('parent', name1):
+        elif name1 in self.w('parent', name2):
             return 'Parent'
 
         elif name1 in self.w('sibling', name2):
             return 'Sibling'
 
-        elif name1 in self.w('ancestor', name2) or name2 in self.w('ancestor', name1):
+        elif name1 in self.w('ancestor', name2):
             return 'Ancestor'
 
-        elif name1 in self.w('relative', name2) or name2 in self.w('relative', name1):
+        elif name1 in self.w('relative', name2):
             return 'Relative'
 
         elif name1 in self.w('unrelated', name2):
